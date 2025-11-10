@@ -1,19 +1,20 @@
-# 🚤 USV Cross-Platform Dashboard
+# USV Dashboard AppState (InheritedWidget Demo)
 
 ## 1. Introduction
-A **Flutter application** for displaying and monitoring data from an **USV (Unmanned Surface Vehicle)** — including real-time operational metrics and water quality indicators.
+A Flutter multi-page application demonstrating how to manage global app state (navigation + theme) using InheritedWidget — the foundation of state management in Flutter.
+This project extends the previous USV Dashboard by adding dynamic page navigation, theme switching, and a Drawer-based UI structure.
 
 ---
 
 ## 2. System Features
 
-| **Feature** | **Description** | **Data Details** |
+| **Feature** | **Description** | **Implementation** |
 |--------------|----------------|------------------|
-| **USV Status** | Displays the vehicle’s core operational indicators. | Battery (%), Speed (km/h), Heading direction. |
-| **Water Quality** | Monitors important environmental parameters. | pH, DO (Dissolved Oxygen), COD (Chemical Oxygen Demand), TSS (Total Suspended Solids). |
-| **History Chart** | Visualizes historical data over time. | Line Chart for tracking the trends of water quality indicators. |
-| **Error Handling** | Integrated `try-catch` mechanism to show connection/data errors and a **Retry** button. | Prevents application crashes caused by asynchronous errors. |
-
+| **Global State Sharing** | Manage app-wide states like currentPage and isDarkTheme without prop drilling. | Custom AppState (InheritedWidget) |
+| **Dynamic Page Navigation** | Instantly switch between multiple pages (Overview, Mission, Dashboard, Stream, Setting) from Drawer. | appState.changePage("Dashboard"). |
+| **Theme Toggle** | Switch between Light and Dark mode dynamically.. | appState.toggleTheme(). |
+| **State Access Anywhere** | Widgets can access global data easily.. | AppState.of(context). |
+| **Performance Optimization** | Only dependent widgets rebuild when data changes. | dependOnInheritedWidgetOfExactType(). |
 ---
 
 ## 3. Installation & Run Guide
@@ -32,9 +33,9 @@ A **Flutter application** for displaying and monitoring data from an **USV (Unma
 
 Clone the repository:
 ```bash
-git clone https://github.com/thanhtra3105/USV-Cross-platform.git
+git clone https://github.com/thanhtra3105/Inherited_Report.git
 
-cd USV-Cross-platform
+cd Inherited_Report
 ```
 
 Install dependencies:
@@ -45,7 +46,7 @@ flutter pub get
 
 This app is designed to run cross-platform (Mobile, Web, and Desktop).
 
-Open IDE: Open the USV-Cross-platform folder in your IDE.
+Open IDE: Open the Inherited_Report folder in your IDE.
 
 Select Device: Choose an emulator/simulator or a real device.
 
@@ -54,11 +55,9 @@ Run the app:
   flutter run
 ```
 
-The dashboard interface will launch and display live data.
+You can switch between pages from the left Drawer menu, and toggle the app’s theme in the icon light/dark.
 
-Note: The app simulates data fetching (including delay and random errors) to test the stability of FutureBuilder and asynchronous logic.
-
-#4. Cấu trúc Dự án Chính
+#4. Project Structure
 ```plaintext
 lib/
 ├── pages/
